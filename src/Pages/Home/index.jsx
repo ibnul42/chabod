@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const timeline = [
   {
@@ -106,9 +106,12 @@ const Home = () => {
           <p className="max-w-md font-semibold italic">
             We have much to accomplish and we need your help!
           </p>
-          <button className="bg-primary text-white font-bold py-2 px-6 rounded-full capitalize transition duration-300 transform hover:bg-hover">
+          <Link
+            to={"/contact"}
+            className="bg-primary text-white font-bold py-2 px-6 rounded-full capitalize transition duration-300 transform hover:bg-hover"
+          >
             Please Contact
-          </button>
+          </Link>
         </section>
       </section>
       <div className="h-[1px] w-full bg-black opacity-25 my-4"></div>
