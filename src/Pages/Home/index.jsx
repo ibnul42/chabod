@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const timeline = [
   {
@@ -39,6 +40,10 @@ const activities = [
 ]
 
 const Home = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate("/")
+  }, [])
   return (
     <div>
       <section className="relative">
@@ -77,7 +82,7 @@ const Home = () => {
                         : "flex-row-reverse lg:flex-row-reverse"
                     }`}
                   >
-                    <div className="bg-gray-100 px-3 py-3 flex flex-col gap-2 rounded-lg shadow-lg lg:w-2/5">
+                    <div className="bg-gray-100 px-3 py-3 flex flex-col gap-2 rounded-lg shadow-custom lg:w-2/5">
                       <p className="text-blue-600 text-lg font-semibold capitalize">
                         {item.title}
                       </p>
@@ -112,7 +117,7 @@ const Home = () => {
           activities.map((item, index) => (
             <div
               key={index}
-              className="w-full md:w-full md:max-w-[47%] lg:max-w-[32%] shadow-lg px-4 py-3 rounded-md flex flex-col gap-2 items-center"
+              className="w-full md:w-full md:max-w-[47%] lg:max-w-[32%] shadow-custom px-4 py-3 rounded-md flex flex-col gap-2 items-center"
             >
               <p className="text-primary text-lg font-semibold">{item.title}</p>
               <p>{item.desc}</p>

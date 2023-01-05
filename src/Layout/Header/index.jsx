@@ -52,14 +52,13 @@ function Index() {
           className={`flex flex-col md:flex-row items-start md:items-center pt-10 md:pt-0 justify-start md:justify-center absolute left-0 md:static w-3/4 h-screen md:h-auto md:w-auto transition-all duration-500 ease-in ${
             open
               ? "opacity-100 top-[65px] bg-primary"
-              : "opacity-0 md:opacity-100 top-[65px] left-[-500px] z-[-1]"
-          } md:z-auto`}
+              : "opacity-0 md:opacity-100 top-[65px] left-[-500px]"
+          } z-50`}
         >
           {links.map((item, index) => (
-            <>
+            <div key={index}>
               <NavLink
                 to={item.link}
-                key={index}
                 className={`px-3 text-md font-noramal md:font-semibold py-3 md:my-0 cursor-pointer uppercase hover:text-red-600 md:hover:text-gray-400`}
                 style={navLinkStyles}
                 onClick={() => setOpen(!open)}
@@ -69,7 +68,7 @@ function Index() {
               {links.length !== index + 1 && (
                 <div className="border-t mx-3 w-3/4 md:hidden"></div>
               )}
-            </>
+            </div>
           ))}
         </ul>
       </div>
