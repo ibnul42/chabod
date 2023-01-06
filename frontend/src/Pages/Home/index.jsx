@@ -54,7 +54,7 @@ const Home = () => {
           alt=""
         />
       </section>
-      <section className="my-5 flex flex-col items-center gap-3">
+      <section className="my-5 flex flex-col items-center gap-3 px-3">
         <p className="max-w-md font-semibold">
           God has used prayer events, united prayer gatherings, conferences, and
           Pastor Prayer Pods in North America and throughout the world to help
