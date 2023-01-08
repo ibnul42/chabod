@@ -5,7 +5,7 @@ import Header from "./Header"
 
 const Index = () => {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <Header />
       <Content />
       <Footer />

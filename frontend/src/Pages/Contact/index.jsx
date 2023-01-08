@@ -31,7 +31,7 @@ const Contact = () => {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {contactList &&
           contactList.map((item, index) => (
-            <div className="my-3 px-3">
+            <div key={index} className="my-3 px-3">
               <p className="text-primary text-xl font-bold my-2 capitalize">
                 {item.name}
               </p>
