@@ -21,9 +21,9 @@ const Index = () => {
   const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login")
-    }
+    // if (!user) {
+    //   navigate("/login")
+    // }
     if (user && location.pathname.toString().includes("/admin")) {
       setAdminPanel(true)
     }

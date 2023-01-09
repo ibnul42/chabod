@@ -17,6 +17,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use('/api/goal', require("./routes/goalRoutes"))
 app.use('/api/users', require("./routes/userRoutes"))
+app.use('/api/events', require("./routes/eventRoutes"))
 app.use(errorHandler)
 
 app.listen(port, () => {

@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { reset, update } from "../../../features/auth/authSlice"
 
 const Profile = () => {
   const [editType, setEditType] = useState(false)
+
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
   const { user, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
   const [inputValue, setInputValue] = useState({
-    id: user.id,
-    name: user.name,
-    email: user.email,
+    id: user?.id,
+    name: user?.name,
+    email: user?.email,
     password: "",
     newPassword: "",
   })
@@ -20,6 +23,9 @@ const Profile = () => {
   const { name, password, newPassword } = inputValue
 
   useEffect(() => {
+    if (!user) {
+      navigate("/login")
+    }
     if (isError) {
       dispatch(reset())
     }
@@ -27,7 +33,7 @@ const Profile = () => {
       setEditType(false)
       dispatch(reset())
     }
-  }, [isError, isSuccess, message, dispatch, reset])
+  }, [isError, isSuccess, message, dispatch, reset, navigate])
 
   const editProfile = (e) => {
     dispatch(update(inputValue))
@@ -54,20 +60,20 @@ const Profile = () => {
               name="name"
               type="text"
               placeholder="Name"
-              value={editType ? name : user.name}
+              value={editType ? name : user?.name}
               disabled={editType === true ? false : true}
               onChange={onChange}
             />
           </div>
           <div className="flex gap-1 flex-col">
-            <label className="px-2 min-w-fit">Email: </label>
+            <label className="px-2 min-w-fit">User: </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               name="email"
               type="text"
               placeholder="Email"
-              value={user.email}
+              value={user?.email}
               //   disabled={editType === true ? false : true}
               disabled
               onChange={onChange}
