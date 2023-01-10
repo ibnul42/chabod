@@ -45,17 +45,17 @@ const Index = () => {
   return (
     <div
       className={`${
-        adminPanel ? "w-screen grid grid-cols-12" : "max-w-7xl"
-      } mx-auto w-full h-full`}
+        adminPanel ? "w-screen grid grid-cols-12 h-full" : "max-w-7xl"
+      } mx-auto w-full`}
     >
       {adminPanel && (
-        <div className="col-span-2 border-r-2 bg-rose-100 border-rose-500 flex flex-col h-full">
+        <div className="col-span-2 border-r bg-white  flex flex-col h-full">
           <div className="flex flex-col">
             {adminLinks &&
               adminLinks.map((item, index) => (
                 <Link
                   key={index}
-                  className="bg-rose-700 hover:bg-rose-900 py-3 text-white px-3 font-medium"
+                  className="bg-primary hover:bg-hover py-3 text-white px-3 font-medium"
                   to={item.path}
                 >
                   {item.titile}
@@ -64,7 +64,7 @@ const Index = () => {
           </div>
           <div className="h-full flex flex-col justify-end">
             <Link
-              className="bg-white py-3 px-3 font-medium"
+              className="bg-primary py-3 px-3 font-medium hover:bg-hover text-white"
               to={"/login"}
               onClick={onLogout}
             >

@@ -40,13 +40,18 @@ const AdminEvent = () => {
         <h1 className="px-3 py-2 text-center text-xl font-semibold">Event</h1>
         <Link
           to="/admin/create-event"
-          className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize m-2"
+          className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize m-2"
           onClick={onEventCreate}
         >
           Create
         </Link>
       </div>
-      <table className="table-auto w-full border my-5 border-primary mx-2">
+      <table
+        className="table-auto border my-5 border-primary mx-2 px-2"
+        style={{
+          width: "-webkit-fill-available",
+        }}
+      >
         <thead className="">
           <tr className="bg-primary text-white grid grid-cols-4">
             <th className="px-4 py-2 col-span-1 border-r border-white">
