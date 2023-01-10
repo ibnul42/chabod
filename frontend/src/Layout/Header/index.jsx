@@ -6,7 +6,7 @@ function Index() {
   // const [activeId, setActiveId] = useState('/')
   const navLinkStyles = ({ isActive }) => {
     return {
-      color: isActive ? "#ca2121" : "",
+      color: isActive ? "#dba124" : "",
       // borderBottom: isActive ? "3px solid #6366f1" : null,
     }
   }
@@ -59,7 +59,7 @@ function Index() {
             <div key={index}>
               <NavLink
                 to={item.link}
-                className={`px-3 text-md font-noramal md:font-semibold py-3 md:my-0 cursor-pointer uppercase hover:text-red-600 md:hover:text-gray-400`}
+                className={`px-3 text-md font-noramal md:font-semibold py-3 md:my-0 cursor-pointer uppercase hover:text-red-600 md:hover:text-[#af811d]`}
                 style={navLinkStyles}
                 onClick={() => setOpen(!open)}
               >

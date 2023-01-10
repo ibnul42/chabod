@@ -3,14 +3,20 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { logout, reset } from "../../features/auth/authSlice"
 import AboutUs from "../../Pages/AboutUs"
-import Dashboard from "../../Pages/Admin/Dashboard"
+import AdminEvent from "../../Pages/Admin/AdminEvent"
+import CreateAdmin from "../../Pages/Admin/AdminEvent/CreateEvent"
+import EditEvent from "../../Pages/Admin/AdminEvent/EditEvent"
 import Profile from "../../Pages/Admin/Profile"
 import Contact from "../../Pages/Contact"
+import Event from "../../Pages/Event"
 import Home from "../../Pages/Home"
 import Login from "../../Pages/Login"
 import Revival from "../../Pages/Revival"
 
-const adminLinks = [{ titile: "Profile", path: "/admin/profile" }]
+const adminLinks = [
+  { titile: "Profile", path: "/admin/profile" },
+  { titile: "Event", path: "/admin/event" },
+]
 
 const Index = () => {
   const [adminPanel, setAdminPanel] = useState(false)
@@ -40,7 +46,7 @@ const Index = () => {
     <div
       className={`${
         adminPanel ? "w-screen grid grid-cols-12" : "max-w-7xl"
-      } mx-auto h-full`}
+      } mx-auto w-full h-full`}
     >
       {adminPanel && (
         <div className="col-span-2 border-r-2 bg-rose-100 border-rose-500 flex flex-col h-full">
@@ -73,9 +79,12 @@ const Index = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/revival" element={<Revival />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/events" element={<Event />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/profile" element={<Profile />} />
+          <Route path="/admin/event" element={<AdminEvent />} />
+          <Route path="/admin/create-event" element={<CreateAdmin />} />
+          <Route path="/admin/edit-event/:id" element={<EditEvent />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </div>

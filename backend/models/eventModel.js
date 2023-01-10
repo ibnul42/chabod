@@ -6,6 +6,10 @@ const eventSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    title: {
+        type: String,
+        required: [true, 'Please provide event Title']
+    },
     date: {
         type: String
     },
