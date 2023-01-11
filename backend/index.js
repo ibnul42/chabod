@@ -21,15 +21,15 @@ app.use('/api/users', require("./routes/userRoutes"))
 app.use('/api/events', require("./routes/eventRoutes"))
 
 // server frontend
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/build')))
+// if(process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-    app.get('*', (req, res) => res.send(
-        path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
-    ))
-} else {
-    app.get('/', (req, res) => res.send('please setup production server before'))
-}
+//     app.get('*', (req, res) => res.send(
+//         path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+//     ))
+// } else {
+//     app.get('/', (req, res) => res.send('please setup production server before'))
+// }
 
 app.use(errorHandler)
 
