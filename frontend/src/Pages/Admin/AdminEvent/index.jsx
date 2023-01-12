@@ -11,7 +11,7 @@ import {
 const AdminEvent = () => {
   const dispatch = useDispatch()
 
-  const { event, isSuccess, isError, isDeleted } = useSelector(
+  const { event, isSuccess, isError, isDeleted, isAllEvents } = useSelector(
     (state) => state.event
   )
 
@@ -31,7 +31,7 @@ const AdminEvent = () => {
     dispatch(deleteEvent(id))
   }
   const onEditEvent = (id) => {
-    console.log(id)
+    dispatch(reset())
   }
 
   return (

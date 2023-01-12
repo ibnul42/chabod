@@ -59,13 +59,20 @@ const CreateAdmin = () => {
   }
 
   const handleSubmit = () => {
-    dispatch(
-      createEvent({
-        title,
-        date: selectedDate,
-        event: list,
-      })
-    )
+    if (
+      list[list.length - 1].title.length < 1 ||
+      list[list.length - 1].time.length < 1
+    ) {
+      toast.warning("Please add list detail")
+    } else {
+      dispatch(
+        createEvent({
+          title,
+          date: selectedDate,
+          event: list,
+        })
+      )
+    }
   }
   return (
     <div className="h-full">

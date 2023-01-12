@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { getEvent, updateEvent } from "../../../features/event/eventSlice"
+import {
+  getEvent,
+  reset,
+  updateEvent,
+} from "../../../features/event/eventSlice"
 
 const EditEvent = () => {
   const [title, setTitle] = useState("")
@@ -16,13 +20,18 @@ const EditEvent = () => {
     useSelector((state) => state.event)
 
   useEffect(() => {
+    if (isEdited) {
+      dispatch(reset())
+      navigate("/admin/event")
+    }
     if (isSingleEvent) {
-      setTitle(event[0].title)
-      setSelectedDate(event[0].date)
-      setList(event[0].event)
+      const i = event.find((item) => item._id === params.id)
+      setTitle(i.title)
+      setSelectedDate(i.date)
+      setList(i.event)
     }
     dispatch(getEvent(params.id))
-  }, [isSingleEvent, dispatch])
+  }, [isSingleEvent, dispatch, isEdited])
 
   const handleChange = (e, i) => {
     const { name, value } = e.target

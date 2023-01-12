@@ -9,6 +9,7 @@ const initialState = {
     isDeleted: false,
     isEdited: false,
     isSingleEvent: false,
+    isAllEvents: false,
     message: ''
 }
 
@@ -84,6 +85,7 @@ export const authSlice = createSlice({
             state.isDeleted = false
             state.isEdited = false
             state.isSingleEvent = false
+            state.isAllEvents = false
         }
     },
     extraReducers: (builder) => {
@@ -125,6 +127,7 @@ export const authSlice = createSlice({
                 state.isSuccess = true
                 state.event = action.payload
                 state.message = null
+                state.isAllEvents = true
             })
             .addCase(allEvent.rejected, (state, action) => {
                  state.isLoading = false
@@ -171,13 +174,12 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.isEdited = true
-                state.event = action.payload
+                state.message = action.payload
             })
             .addCase(updateEvent.rejected, (state, action) => {
                  state.isLoading = false
                  state.isError = true
                  state.message = action.payload
-                 state.event = null
             })
     }
 })
