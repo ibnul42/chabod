@@ -15,6 +15,7 @@ import Login from "../../Pages/Login"
 const adminLinks = [
   { titile: "Profile", path: "/admin/profile" },
   { titile: "Event", path: "/admin/event" },
+  // { titile: "Contact", path: "/admin/contact" },
 ]
 
 const Index = () => {
@@ -82,6 +83,7 @@ const Index = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/admin/profile" element={<Profile />} />
           <Route path="/admin/event" element={<AdminEvent />} />
+          {/* <Route path="/admin/contact" element={<AdminContact />} /> */}
           <Route path="/admin/create-event" element={<CreateAdmin />} />
           <Route path="/admin/edit-event/:id" element={<EditEvent />} />
           <Route path="*" element={<Home />} />
