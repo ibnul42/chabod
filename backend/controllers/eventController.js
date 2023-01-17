@@ -15,7 +15,6 @@ const createEvent = asyncHandler( async (req, res) => {
         res.status(404)
         throw new Error('Please provide event details')
     }
-    console.log(req.body)
 
     const eventExist = await Event.findOne({date: req.body.date})
 

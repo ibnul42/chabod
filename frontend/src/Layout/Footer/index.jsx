@@ -18,8 +18,8 @@ const Index = () => {
       <div className="h-[1px] w-full bg-white my-4"></div>
       <div className="">
         <p className="text-center">
-          &copy; 2018-2022 Revival Prayer Fellowship. All Rights Reserved.
-          Website by Creativebase8
+          &copy; 2018-2022 Chabod Prayer and Gospel Ministry. All Rights
+          Reserved. Website by Creativebase8
         </p>
       </div>
     </div>

@@ -3,16 +3,20 @@ import { Link, useNavigate } from "react-router-dom"
 
 const timeline = [
   {
-    title: "our mission",
-    desc: "To stimulate an awareness of the necessity for prayer in the revival of the Church of Jesus Christ.",
+    title: "የአገልግሎቱ ራዕይ",
+    desc: "የገሃነም ደጆች የማይቋቋማትን የክርስቶስን አካል ቤተ ክርስቲያንን ለማየት እና የተሀድሶ ዝናብ እንዲመጣ ልክ ነቢዩ ኤርምያስ “ምድሪቱ የምታለቅሰው የሀገሩም ሳር የሚደርቀው እስከመቼ ነው?’’ በማለት እንደማለደ እና እንደቀና ለእግዚአብሔር የጨከነ፤ ጉስቁልናን እና የጠላት ማታለልን በመቃወም የእግዚአብሔርን ተስፋ የያዘ የጸሎትና የምልጃ ሠራዊት በቅዱስ ቃሉና በቅዱስ መንፈሱ በምድር ዙሪያ በመቀስቀስ የትውልዱ ፈውስ እና እድሳት እንዲፈጥንና እንዲመጣ እንዲቀጥል መትጋት ነው።",
   },
   {
     title: "our background",
     desc: "Revival Prayer Fellowship was birthed in the heart of Armin Gesswein in 1931 while pastoring a Lutheran church in Long Island, New York. When the Holy Spirit brought revival to his congregation, God called him into the minis-try of revival prayer. This burden led Armin to be involved in the great revival of Norway. Upon returning to America, he spent 65 years speaking at evangelistic crusades, semi-nars, churches, conferences and camps on prayer and revival. Armin went to be with the Lord in 2001 at the age of 93. At that time the RPF board passed the mantel on to Rev. LaRue Goetz.",
   },
   {
-    title: "our vision",
-    desc: "To see and facilitate genuine revival in the churches of Jesus Christ.",
+    title: "የአገልግሎቱ ተልዕኮ",
+    desc: "የእውነት ዓምድና መሰረት የሆነው ክርስቶስ ፤ ሁሉን የሚገዛው የመንግስቱ ጽድቅ በአካሉ ውስጥ እንዲገለጥ ፤ ልጁ ወደ  አደረገን እና ለአካሉ ወደ ተሰጣት ተስፋ በመመለስ ተሀድሶ እንዲፈጥንና በአቅጣጫ የመከሩ ሰራተኞች እንዲታደሱ እና እንዲላኩ  እንዲሁም መልዕክተኞቹን ማስታጠቅና ማነሳሳት በተልዕኮ ውስጥ እንዲበቁ  ማድረግ  በአካሉ ውስጥ ጉበኞችን ማስነሳት፤ መቀስቀስ እንዲሁም እውነተኛ አምልኮ ዜማ እና ቅኔን የሚቀኙ የእድሳቱ ጉብኝት ተካፋይ እንዲሆኑ ማብቃት    ታላቅ የተሀድሶ ዝናብ በመጠበቅ ቅዱስ ቃሉን ዋናኛ መመሪያ በማድረግ በታደስ አእምሮ አካሉን ሊያንጻት በፈለገበት ሀይል በመገኘትና በመጠበቅ (2ኛጢሞ 3:16) እንዲሁም በፍጹም ልብና የመንፈስ መቃተት የእግዚአብሔርን ተስፋ እና ጣልቃ ገብነት እንዲሆን መትጋት ቤተክርስቲያን የምትቀስቀስበት እና የምትነቃበት እንዲሁም በንሰሀ በመመለስ የቃሉን ተስፋ (2ኛ ዜና 7:14) በመጸለይ የእድሳቷ ጊዜ እንዲፈጥን በጸሎት መትጋት  አካሉ ወደ ተፈለገችበትና ተጠራችበት እንድትተጋ እና እድሳቱ ደግሞ በቤተክርስቲያን እንዲመጣና እንዲያድሳት ወደ እርሱ እንድትቀርብ በሆነ የመንፈስ መቃተት እና ጩኸት መጠበቅ",
+  },
+  {
+    title: "የአገልግሎቱ ግብ",
+    desc: "በመጀመሪያ በቶሮንቶና በአካባቢዋ፣ በኦንታርዮና ካናዳ፣ በምድራችን ኢትዮጵያ እንዲሁም በዓለም ዙሪያ ያለውን በክርስቶስ አካል መካከል መንፈሳዊ እንቅስቃሴ (REVIVAL) እንዲነሳና ብዙዎች በወንጌል እንዲያምኑ መቀስቀስ እና መጸለይ ፣ የዚህን ራዕይ ፍጻሜ ለማየት ደግሞ ከሌሎች እግዚአብሔርን በእውነትና በመንፈስ ከሚያመልኩ ቅዱሳን ፤ ሕብረቶች እንዲሁም አብያተ ክርስቲያናት ጋር ፍሬያማ የሆነ ህብረትን በመመስረት እና በማድረግ ራዕዩን ይወጣል።",
   },
 ]
 
@@ -55,16 +59,20 @@ const Home = () => {
         />
       </section>
       <section className="my-5 flex flex-col items-center gap-3 px-3">
-        <p className="max-w-md font-semibold">
-          God has used prayer events, united prayer gatherings, conferences, and
-          Pastor Prayer Pods in North America and throughout the world to help
-          restore and rekindle the flame of the Holy Spirit in true revival
-          among Christian leaders. We have dedicated ourselves to continue
-          teaching and leading the body of Christ back to prayer.
+        <p className="max-w-md font-semibold text-center">
+          “ተነሺ በሌሊት በመጀመሪያ ክፍል ጩኺ፤ በጌታም ፊት ልብሽን እንደ ውኃ አፍስሺ፤ በጎዳና ሁሉ ራስ ላይ በራብ
+          ሰለ ደከሙ ሰለ ሕጻናትሽ ነፍስ እጆችሽን ወደ እርሱ አንሺ” (ሰቆ ኤር 2:19)
         </p>
-        <button className="bg-primary text-white font-bold py-2 px-6 rounded-full capitalize transition duration-300 transform hover:bg-hover">
+        <p className="max-w-md font-semibold text-center">
+          “በኋለኛው ዝናብ ጊዜ ከእግዚአብሔር ዘንድ ዝናቡን ለምኑ፤ እግዚአብሔር መብረቅ ያደርጋል፤ እርሱም የበልግ
+          ዝናብን ለእያንዳንዱም በሜዳ ውስጥ ሣርን ይሰጣል” (ዘካ 10:1)
+        </p>
+        <Link
+          to="/contact"
+          className="bg-primary text-white font-bold py-2 px-6 rounded-full capitalize transition duration-300 transform hover:bg-hover"
+        >
           Click me
-        </button>
+        </Link>
       </section>
       <div className="h-[1px] w-full bg-black opacity-25 my-4"></div>
       <section>
@@ -103,8 +111,8 @@ const Home = () => {
           </div>
         </div>
         <section className="my-5 flex flex-col items-center gap-3">
-          <p className="max-w-md font-semibold italic">
-            We have much to accomplish and we need your help!
+          <p className="max-w-md font-semibold italic capitalize">
+            please contact us for prayer request
           </p>
           <Link
             to={"/contact"}

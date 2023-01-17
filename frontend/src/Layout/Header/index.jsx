@@ -12,7 +12,7 @@ function Index() {
   }
   const links = [
     { name: "About us", link: "/about" },
-    { name: "revival", link: "/revival" },
+    // { name: "revival", link: "/revival" },
     { name: "events", link: "/events" },
     { name: "Contact us", link: "/contact" },
   ]

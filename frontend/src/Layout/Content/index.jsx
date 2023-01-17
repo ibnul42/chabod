@@ -11,7 +11,6 @@ import Contact from "../../Pages/Contact"
 import Event from "../../Pages/Event"
 import Home from "../../Pages/Home"
 import Login from "../../Pages/Login"
-import Revival from "../../Pages/Revival"
 
 const adminLinks = [
   { titile: "Profile", path: "/admin/profile" },
@@ -77,7 +76,7 @@ const Index = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/revival" element={<Revival />} />
+          {/* <Route path="/revival" element={<Revival />} /> */}
           <Route path="/about" element={<AboutUs />} />
           <Route path="/events" element={<Event />} />
           <Route path="/login" element={<Login />} />
