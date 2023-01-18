@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import clientService from './clientService'
 
 const initialState = {
     isLoading: false,
@@ -14,75 +15,35 @@ const initialState = {
 
 export const getContacts = createAsyncThunk('clients/all-contacts', async (_, thunkAPI) => {
     try {
-        return await eventService.getContacts()
+        return await clientService.getContacts()
     } catch (error) {
         const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
 })
 
-// single Event
-export const singleEvent = createAsyncThunk('event/single-event', async(date, thunkAPI) => {
+export const createContact = createAsyncThunk('clients/create-contact', async (data, thunkAPI) => {
     try {
-        return await eventService.singleEvent(date)
+        return await clientService.createContact(data)
     } catch (error) {
         const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
 })
 
-export const getEvent = createAsyncThunk('event/get-event', async(id, thunkAPI) => {
+export const deleteContact = createAsyncThunk('clients/delete-contact', async (id, thunkAPI) => {
     try {
-        return await eventService.getEvent(id)
+        return await clientService.deleteContact(id)
     } catch (error) {
         const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
 })
 
-// all Event
-export const allEvent = createAsyncThunk('event/all-event', async(date, thunkAPI) => {
-    try {
-        return await eventService.allEvent(date)
-    } catch (error) {
-        const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
-
-// create Event
-export const createEvent = createAsyncThunk('event/create-event', async(data, thunkAPI) => {
-    try {
-        return await eventService.createEvent(data)
-    } catch (error) {
-        const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
-
-// delete Event
-export const deleteEvent = createAsyncThunk('event/delete-event', async(id, thunkAPI) => {
-    try {
-        return await eventService.deleteEvent(id)
-    } catch (error) {
-        const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
-
-// update Event
-export const updateEvent = createAsyncThunk('event/update-event', async(data, thunkAPI) => {
-    try {
-        return await eventService.updateEvent(data)
-    } catch (error) {
-        const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
 
 
 export const clientSlice = createSlice({
-    name: 'event',
+    name: 'client',
     initialState,
     reducers: {
         reset: (state) => {
@@ -98,20 +59,50 @@ export const clientSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getContacts.pending, (state) => {
-                state.isLoading = false
-            })
-            .addCase(getContacts.fulfilled, (state) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.contacts = action.payload
-            })
-            .addCase(getContacts.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-                state.contacts = null
-            })
+        .addCase(getContacts.pending, (state) => {
+            state.isLoading = false
+        })
+        .addCase(getContacts.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.contacts = action.payload
+            state.isAllContacts = true
+        })
+        .addCase(getContacts.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+            state.contacts = null
+        })
+        .addCase(createContact.pending, (state) => {
+            state.isLoading = false
+        })
+        .addCase(createContact.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.contacts = action.payload
+            state.isCreatedContact = true
+        })
+        .addCase(createContact.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+            state.contacts = null
+        })
+        .addCase(deleteContact.pending, (state) => {
+            state.isLoading = false
+        })
+        .addCase(deleteContact.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.contacts = action.payload
+            state.isDeletedContact = true
+        })
+        .addCase(deleteContact.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
     }
 })
 

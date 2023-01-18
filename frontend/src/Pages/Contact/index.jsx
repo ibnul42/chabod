@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
+import { getContacts } from "../../features/client/clientSlice"
 const contactList = [
   {
     name: "Rev. Laru Goerts, President",
@@ -24,6 +26,7 @@ const contactList = [
 ]
 
 const Contact = () => {
+  const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState({
     firstName: "",
     lastName: "",
@@ -41,6 +44,12 @@ const Contact = () => {
       [name]: value,
     }))
   }
+
+  const { contacts } = useSelector((state) => state.client)
+
+  useEffect(() => {
+    dispatch(getContacts())
+  })
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -62,14 +71,14 @@ const Contact = () => {
         Contact us
       </h1>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {contactList &&
-          contactList.map((item, index) => (
+        {contacts &&
+          contacts.map((item, index) => (
             <div key={index} className="my-3 px-3">
               <p className="text-primary text-xl font-bold my-2 capitalize">
                 {item.name}
               </p>
               <p>{item.address}</p>
-              <p>Email: {item.mail}</p>
+              <p>Email: {item.email}</p>
             </div>
           ))}
       </section>

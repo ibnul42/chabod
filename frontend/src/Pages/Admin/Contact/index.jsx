@@ -1,35 +1,39 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getContacts, reset } from "../../../features/client/clientSlice"
-import { deleteEvent } from "../../../features/event/eventSlice"
+import {
+  deleteContact,
+  getContacts,
+  reset,
+} from "../../../features/client/clientSlice"
 
 const AdminContact = () => {
   const dispatch = useDispatch()
 
   const {
-    event,
     isSuccess,
     isError,
     isDeleted,
     isAllEvents,
     contacts,
     isAllContacts,
+    isDeletedContact,
   } = useSelector((state) => state.client)
 
   useEffect(() => {
-    if (isAllContacts) {
+    if (isAllContacts || isDeletedContact) {
       dispatch(reset())
+    } else if (!contacts) {
+      dispatch(getContacts())
     }
-    dispatch(getContacts())
-  }, [dispatch])
+  }, [dispatch, isAllContacts, contacts, isDeletedContact])
 
-  const onEventCreate = () => {
+  const onCreate = () => {
     dispatch(reset())
   }
 
-  const onEventDelete = (id) => {
-    dispatch(deleteEvent(id))
+  const onDelete = (id) => {
+    dispatch(deleteContact(id))
   }
   const onEditEvent = (id) => {
     dispatch(reset())
@@ -38,11 +42,13 @@ const AdminContact = () => {
   return (
     <div className="h-full">
       <div className="flex justify-between">
-        <h1 className="px-3 py-2 text-center text-xl font-semibold">Event</h1>
+        <h1 className="px-3 py-2 text-center text-xl font-semibold">
+          Contacts
+        </h1>
         <Link
-          to="/admin/create-event"
+          to="/admin/create-contact"
           className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize m-2"
-          onClick={onEventCreate}
+          onClick={onCreate}
         >
           Create
         </Link>
@@ -54,36 +60,44 @@ const AdminContact = () => {
         }}
       >
         <thead className="">
-          <tr className="bg-primary text-white grid grid-cols-4">
-            <th className="px-4 py-2 col-span-1 border-r border-white">
-              Event Date
+          <tr className="bg-primary text-white grid grid-cols-12">
+            <th className="px-4 py-2 col-span-1 border-r border-white">Sl.</th>
+            <th className="px-4 py-2 col-span-2 border-r border-white">Name</th>
+            <th className="px-4 py-2 col-span-3 border-r border-white">
+              Email
             </th>
-            <th className="px-4 py-2 col-span-2 border-r border-white">
-              Title
+            <th className="px-4 py-2 col-span-4 border-r border-white">
+              Address
             </th>
-            <th className="px-4 py-2 col-span-1">Action</th>
+            <th className="px-4 py-2 col-span-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          {event && event.events && event.events.length > 0 ? (
-            event.events.map((item, index) => (
-              <tr key={index} className="even:bg-rose-200 grid grid-cols-4">
+          {contacts ? (
+            contacts.map((item, index) => (
+              <tr key={index} className="even:bg-rose-200 grid grid-cols-12">
                 <td className="px-4 py-2 col-span-1 border-r border-primary flex items-center justify-center">
-                  <p>{item.date}</p>
+                  <p>{index + 1}</p>
                 </td>
                 <td className="px-4 py-2 col-span-2 border-r border-primary flex items-center justify-center">
-                  {item.title}
+                  <p>{item.name}</p>
                 </td>
-                <td className="px-4 py-2 col-span-1 flex justify-center gap-3">
-                  <Link
+                <td className="px-4 py-2 col-span-3 border-r border-primary flex items-center justify-center">
+                  {item.email}
+                </td>
+                <td className="px-4 py-2 col-span-4 border-r border-primary flex items-center justify-center">
+                  {item.address}
+                </td>
+                <td className="px-4 py-2 col-span-2 flex justify-center gap-3">
+                  {/* <Link
                     to={`/admin/edit-event/${item._id}`}
                     className="px-6 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer"
                     onClick={() => onEditEvent(item._id)}
                   >
                     Edit
-                  </Link>
+                  </Link> */}
                   <button
-                    onClick={() => onEventDelete(item._id)}
+                    onClick={() => onDelete(item._id)}
                     className="px-4 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer"
                   >
                     Delete

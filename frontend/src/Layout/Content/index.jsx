@@ -6,6 +6,8 @@ import AboutUs from "../../Pages/AboutUs"
 import AdminEvent from "../../Pages/Admin/AdminEvent"
 import CreateAdmin from "../../Pages/Admin/AdminEvent/CreateEvent"
 import EditEvent from "../../Pages/Admin/AdminEvent/EditEvent"
+import AdminContact from "../../Pages/Admin/Contact"
+import CreateContact from "../../Pages/Admin/Contact/CreateContact"
 import Profile from "../../Pages/Admin/Profile"
 import Contact from "../../Pages/Contact"
 import Event from "../../Pages/Event"
@@ -15,7 +17,7 @@ import Login from "../../Pages/Login"
 const adminLinks = [
   { titile: "Profile", path: "/admin/profile" },
   { titile: "Event", path: "/admin/event" },
-  // { titile: "Contact", path: "/admin/contact" },
+  { titile: "Contact", path: "/admin/contact" },
 ]
 
 const Index = () => {
@@ -83,7 +85,8 @@ const Index = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/admin/profile" element={<Profile />} />
           <Route path="/admin/event" element={<AdminEvent />} />
-          {/* <Route path="/admin/contact" element={<AdminContact />} /> */}
+          <Route path="/admin/contact" element={<AdminContact />} />
+          <Route path="/admin/create-contact" element={<CreateContact />} />
           <Route path="/admin/create-event" element={<CreateAdmin />} />
           <Route path="/admin/edit-event/:id" element={<EditEvent />} />
           <Route path="*" element={<Home />} />
