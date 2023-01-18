@@ -69,6 +69,21 @@ const createPrayer = asyncHandler(async (req, res) => {
   })
 })
 
+const getPrayers = asyncHandler(async (req, res) => {
+
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(401)
+    throw new Error("User not found")
+  }
+
+  const allPrayers = await Prayer.find()
+
+  res.status(200)
+  res.json(allPrayers)
+})
+
 const allContacts = asyncHandler(async (req, res) => {
   const allContacts = await Contact.find()
 
@@ -99,9 +114,34 @@ const deleteContact = asyncHandler(async (req, res) => {
   res.json(allContacts)
 })
 
+const deletePrayer = asyncHandler(async (req, res) => {
+  const prayer = await Prayer.findById(req.params.id)
+
+  if (!prayer) {
+    res.status(401)
+    throw new Error("prayer not found")
+  }
+
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(401)
+    throw new Error("User not found")
+  }
+
+  await Prayer.findByIdAndDelete(req.params.id)
+
+  const allPrayers = await Prayer.find()
+
+  res.status(200)
+  res.json(allPrayers)
+})
+
 module.exports = {
   createContact,
   createPrayer,
+  getPrayers,
   allContacts,
   deleteContact,
+  deletePrayer
 }

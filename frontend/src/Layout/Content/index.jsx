@@ -8,6 +8,7 @@ import CreateAdmin from "../../Pages/Admin/AdminEvent/CreateEvent"
 import EditEvent from "../../Pages/Admin/AdminEvent/EditEvent"
 import AdminContact from "../../Pages/Admin/Contact"
 import CreateContact from "../../Pages/Admin/Contact/CreateContact"
+import Prayer from "../../Pages/Admin/Prayer"
 import Profile from "../../Pages/Admin/Profile"
 import Contact from "../../Pages/Contact"
 import Event from "../../Pages/Event"
@@ -18,6 +19,7 @@ const adminLinks = [
   { titile: "Profile", path: "/admin/profile" },
   { titile: "Event", path: "/admin/event" },
   { titile: "Contact", path: "/admin/contact" },
+  { titile: "Prayer Request", path: "/admin/prayers" },
 ]
 
 const Index = () => {
@@ -47,8 +49,8 @@ const Index = () => {
   return (
     <div
       className={`${
-        adminPanel ? "w-screen grid grid-cols-12 h-full" : "max-w-7xl"
-      } mx-auto w-full`}
+        adminPanel ? "w-screen grid grid-cols-12" : "max-w-7xl"
+      } flex-auto mx-auto w-full`}
     >
       {adminPanel && (
         <div className="col-span-2 border-r bg-white  flex flex-col h-full">
@@ -89,6 +91,7 @@ const Index = () => {
           <Route path="/admin/create-contact" element={<CreateContact />} />
           <Route path="/admin/create-event" element={<CreateAdmin />} />
           <Route path="/admin/edit-event/:id" element={<EditEvent />} />
+          <Route path="/admin/prayers" element={<Prayer />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </div>

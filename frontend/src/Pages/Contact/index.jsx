@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { getContacts } from "../../features/client/clientSlice"
+import {
+  createPrayer,
+  getContacts,
+  reset,
+} from "../../features/client/clientSlice"
 const contactList = [
   {
     name: "Rev. Laru Goerts, President",
@@ -37,6 +41,29 @@ const Contact = () => {
 
   const { firstName, lastName, email, phone, message } = inputValue
 
+  const {
+    contacts,
+    message: sliceMessage,
+    isCreatedPrayer,
+  } = useSelector((state) => state.client)
+
+  useEffect(() => {
+    if (isCreatedPrayer) {
+      toast.success(sliceMessage.message)
+      setInputValue({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      })
+      dispatch(reset())
+    }
+    if (!contacts) {
+      dispatch(getContacts())
+    }
+  }, [isCreatedPrayer, contacts])
+
   const onChange = (e) => {
     const { name, value } = e.target
     setInputValue((prev) => ({
@@ -44,12 +71,6 @@ const Contact = () => {
       [name]: value,
     }))
   }
-
-  const { contacts } = useSelector((state) => state.client)
-
-  useEffect(() => {
-    dispatch(getContacts())
-  })
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -62,7 +83,7 @@ const Contact = () => {
     } else if (message.trim().length > 500) {
       toast.warning(`Message should be less than 500 characters`)
     } else {
-      console.log(inputValue)
+      dispatch(createPrayer(inputValue))
     }
   }
   return (
