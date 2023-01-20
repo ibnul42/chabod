@@ -49,7 +49,6 @@ const CreateAdmin = () => {
 
   const removeRow = (i) => {
     const tempList = [...list]
-    console.log(tempList)
     tempList.splice(i, 1)
     setList(tempList)
   }

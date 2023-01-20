@@ -30,7 +30,6 @@ const Event = () => {
   }
 
   const onSubmit = () => {
-    console.log(12)
     dispatch(singleEvent(selectedDate))
   }
   return (

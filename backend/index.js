@@ -22,15 +22,17 @@ app.use("/api/events", require("./routes/eventRoutes"))
 app.use("/api/clients", require("./routes/clientRoutes"))
 
 // server frontend
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")))
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")))
+//   app.use(express.static('/'))
 
-  app.get("*", (req, res) =>
-    res.send(path.resolve(__dirname, "../", "frontend", "dist", "index.html"))
-  )
-} else {
-  app.get("/", (req, res) => res.send("please setup production server before"))
-}
+//   app.use((req, res) =>
+//     res.sendFile(path.join(__dirname, "../", "frontend", "dist", "index.html"))
+
+//   )
+// } else {
+//   app.get("/", (req, res) => res.send("please setup production server before"))
+// }
 
 app.use(errorHandler)
 
