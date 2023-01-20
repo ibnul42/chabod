@@ -1,6 +1,6 @@
 const path = require("path")
 const express = require("express")
-const dotenv = require("dotenv").config()
+require("dotenv").config()
 const color = require("colors")
 const cors = require("cors")
 const connectDB = require("./config/db")
@@ -22,15 +22,15 @@ app.use("/api/events", require("./routes/eventRoutes"))
 app.use("/api/clients", require("./routes/clientRoutes"))
 
 // server frontend
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../frontend/dist")))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
-//   app.get("*", (req, res) =>
-//     res.send(path.resolve(__dirname, "../", "frontend", "dist", "index.html"))
-//   )
-// } else {
-//   app.get("/", (req, res) => res.send("please setup production server before"))
-// }
+  app.get("*", (req, res) =>
+    res.send(path.resolve(__dirname, "../", "frontend", "dist", "index.html"))
+  )
+} else {
+  app.get("/", (req, res) => res.send("please setup production server before"))
+}
 
 app.use(errorHandler)
 
