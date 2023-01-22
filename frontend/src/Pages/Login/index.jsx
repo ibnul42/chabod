@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import { login } from "../../features/auth/authSlice"
 
 const Login = () => {
@@ -14,15 +15,19 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user, isLoading, isSuccess, isError } = useSelector(
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
 
   useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
     if (user || isSuccess) {
+      toast.success("Login successfull!")
       navigate("/admin/profile")
     }
-  }, [user, isSuccess])
+  }, [user, isSuccess, isError])
 
   const onChange = (e) => {
     const { name, value } = e.target

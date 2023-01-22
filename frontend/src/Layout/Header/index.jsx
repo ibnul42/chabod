@@ -11,8 +11,8 @@ function Index() {
     }
   }
   const links = [
+    { name: "home", link: "/" },
     { name: "About us", link: "/about" },
-    // { name: "revival", link: "/revival" },
     { name: "events", link: "/events" },
     { name: "Contact us", link: "/contact" },
   ]

@@ -79,7 +79,10 @@ const Home = () => {
         <div id="timeline" className="">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
             <div className="flex flex-col gap-3 lg:gap-5 my-8 relative">
-              <div className="absolute left-7 lg:left-[54%] xl:left-[53.1%] -top-4 h-full w-[6px] bg-[#CC99A6]"></div>
+              <div className="absolute h-full w-full hidden lg:flex justify-center">
+                <div className="h-full w-2 bg-[#CC99A6] rounded-lg"></div>
+              </div>
+              {/* <div className="absolute left-7 lg:left-[54%] xl:left-[53.1%] -top-4 h-full w-[6px] bg-[#CC99A6]"></div> */}
               {timeline &&
                 timeline.map((item, index) => (
                   <div
@@ -95,16 +98,21 @@ const Home = () => {
                         {item.title}
                       </p>
                       <p className="text-gray-600">{item.desc}</p>
-                      {/* <p className="text-gray-400">{item.joined_date}</p> */}
                     </div>
-                    <div className="h-16 lg:h-20 w-16 lg:w-20 flex-shrink-0 rounded-full bg-white shadow- shadow-gray-400 p-1 lg:absolute left-[50%]">
-                      {/* <img
-                        src={item.imageLink}
-                        className="h-full w-full rounded-full"
-                        alt=""
-                      /> */}
+                    <div className="absolute h-full w-full hidden lg:flex justify-center items-center">
+                      <div className="h-16 lg:h-20 w-16 lg:w-20 flex-shrink-0 rounded-full bg-white shadow- shadow-gray-400 p-1 z-10">
+                        <div className="h-full w-full bg-primary rounded-full"></div>
+                      </div>
+                      {timeline.length === index + 1 && (
+                        <div className="absolute top-[50%] h-[50%] w-20 bg-white"></div>
+                      )}
+                      {index === 0 && (
+                        <div className="absolute h-[50%] bottom-[50%] w-20 bg-white"></div>
+                      )}
+                    </div>
+                    {/* <div className="h-16 lg:h-20 w-16 lg:w-20 flex-shrink-0 rounded-full bg-white shadow- shadow-gray-400 p-1 lg:absolute left-[50%]">
                       <div className="h-full w-full bg-primary rounded-full"></div>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
             </div>

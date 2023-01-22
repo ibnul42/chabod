@@ -10,6 +10,7 @@ const initialState = {
     isEdited: false,
     isSingleEvent: false,
     isAllEvents: false,
+    isEventsBydate: false,
     message: ''
 }
 
@@ -17,6 +18,15 @@ const initialState = {
 export const singleEvent = createAsyncThunk('event/single-event', async(date, thunkAPI) => {
     try {
         return await eventService.singleEvent(date)
+    } catch (error) {
+        const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const eventsByDate = createAsyncThunk('event/events-date', async(date, thunkAPI) => {
+    try {
+        return await eventService.eventsByDate(date)
     } catch (error) {
         const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -86,6 +96,7 @@ export const authSlice = createSlice({
             state.isEdited = false
             state.isSingleEvent = false
             state.isAllEvents = false
+            state.isEventsBydate = false
         }
     },
     extraReducers: (builder) => {
@@ -99,6 +110,21 @@ export const authSlice = createSlice({
                 state.event = action.payload
             })
             .addCase(singleEvent.rejected, (state, action) => {
+                 state.isLoading = false
+                 state.isError = true
+                 state.message = action.payload
+                 state.event = null
+            })
+            .addCase(eventsByDate.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(eventsByDate.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.event = action.payload
+                state.isEventsBydate = true
+            })
+            .addCase(eventsByDate.rejected, (state, action) => {
                  state.isLoading = false
                  state.isError = true
                  state.message = action.payload

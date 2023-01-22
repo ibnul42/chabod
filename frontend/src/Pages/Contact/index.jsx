@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import emailjs from "@emailjs/browser"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import {
@@ -30,6 +31,7 @@ const contactList = [
 ]
 
 const Contact = () => {
+  const form = useRef()
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState({
     firstName: "",
@@ -72,7 +74,7 @@ const Contact = () => {
     }))
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (firstName.trim().length < 1) {
       toast.warning(`Please enter first name`)
@@ -83,7 +85,22 @@ const Contact = () => {
     } else if (message.trim().length > 500) {
       toast.warning(`Message should be less than 500 characters`)
     } else {
-      dispatch(createPrayer(inputValue))
+      await emailjs
+        .sendForm(
+          "service_dm60964",
+          "template_5gscd9e",
+          form.current,
+          "sSg8tHPtefYqBwoe_"
+        )
+        .then(
+          () => {
+            dispatch(createPrayer(inputValue))
+          },
+          (error) => {
+            console.log(error.text)
+          }
+        )
+      // dispatch(createPrayer(inputValue))
     }
   }
   return (
@@ -109,6 +126,7 @@ const Contact = () => {
         </h3>
         <form
           action="#"
+          ref={form}
           onSubmit={onSubmit}
           className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
         >

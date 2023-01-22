@@ -4,14 +4,21 @@ const Index = () => {
   return (
     <div className="bg-primary text-white py-5">
       <div className="max-w-7xl mx-auto px-3">
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-5">
-            <img src="/icons/phone.svg" alt="" />
-            <p>701-391-0931</p>
+        <div className="flex flex-col gap-3 overflow-hidden">
+          <div className="flex gap-2 md:gap-5 text-[13px] md:text-base">
+            <img src="/icons/fb.svg" className="h-7 w-7" alt="fb" />
+            <a href="https://www.facebook.com/chabodseason" target="_blank">
+              chabodseason
+            </a>
           </div>
-          <div className="flex gap-5">
-            <img src="/icons/mail.svg" alt="" />
-            <p>example@mail.com</p>
+          <div className="flex gap-2 md:gap-5 text-[13px] md:text-base">
+            <img src="/icons/mail.svg" className="h-6 w-6" alt="gm" />
+            <a
+              href="mailto:chabodprayerandgospelministry@gmail.com"
+              className="break-words"
+            >
+              chabodprayerandgospelministry@gmail.com
+            </a>
           </div>
         </div>
       </div>
