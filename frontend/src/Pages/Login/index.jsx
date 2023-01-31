@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { login } from "../../features/auth/authSlice"
 
 const Login = () => {
+  const location = useLocation()
+  const [logoutUser, setLogoutUser] = useState(
+    location?.state?.logout ? true : false
+  )
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -15,19 +19,21 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  )
+  const { user, isLoading, isSuccess, isError, message, isLoggedIn } =
+    useSelector((state) => state.auth)
 
   useEffect(() => {
     if (isError) {
       toast.error(message)
     }
-    if (user || isSuccess) {
+    // if (logoutUser) {
+    //   toast.success("Logout successfull!")
+    // }
+    if (user && logoutUser === false) {
       toast.success("Login successfull!")
       navigate("/admin/profile")
     }
-  }, [user, isSuccess, isError])
+  }, [user, isSuccess, isError, logoutUser])
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -38,6 +44,7 @@ const Login = () => {
   }
 
   const onSubmit = () => {
+    setLogoutUser(false)
     dispatch(login(inputValue))
   }
 

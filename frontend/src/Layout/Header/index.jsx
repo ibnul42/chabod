@@ -17,8 +17,8 @@ function Index() {
     { name: "Contact us", link: "/contact" },
   ]
   return (
-    <div className="z-40 bg-primary text-white">
-      <div className="max-w-7xl mx-auto px-3 flex justify-between">
+    <div className="z-40 bg-gradient-to-r from-black to-primary text-white">
+      <div className="max-w-7xl mx-auto px-3 lg:px-0 flex justify-between">
         <div className="flex items-center bg-black cursor-pointer">
           {/* <p className="font-bold text-2xl">Logo</p> */}
           {/* <img src="/assets/ui_logo.svg" className='h-10 w-10' alt="logo" /> */}
@@ -51,7 +51,7 @@ function Index() {
         <ul
           className={`flex flex-col md:flex-row items-start md:items-center pt-10 md:pt-0 justify-start md:justify-center absolute left-0 md:static w-3/4 h-screen md:h-auto md:w-auto transition-all duration-500 ease-in ${
             open
-              ? "opacity-100 top-[65px] bg-primary"
+              ? "opacity-100 top-[65px] bg-primary lg:bg-transparent"
               : "opacity-0 md:opacity-100 top-[65px] left-[-500px]"
           } z-50`}
         >

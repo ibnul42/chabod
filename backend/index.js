@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use("/api/users", require("./routes/userRoutes"))
 app.use("/api/events", require("./routes/eventRoutes"))
 app.use("/api/clients", require("./routes/clientRoutes"))
+app.use("/api/home", require("./routes/homeRoutes"))
 
 // server frontend
 // if (process.env.NODE_ENV === "production") {

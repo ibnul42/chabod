@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser"
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
@@ -82,24 +81,24 @@ const Contact = () => {
       toast.warning(`Please enter last name`)
     } else if (email.trim().length < 1) {
       toast.warning(`Please enter email`)
-    } else if (message.trim().length > 500) {
-      toast.warning(`Message should be less than 500 characters`)
+    } else if (message.trim().length > 1000) {
+      toast.warning(`Message should be less than 1000 characters`)
     } else {
-      await emailjs
-        .sendForm(
-          "service_dm60964",
-          "template_5gscd9e",
-          form.current,
-          "sSg8tHPtefYqBwoe_"
-        )
-        .then(
-          () => {
-            dispatch(createPrayer(inputValue))
-          },
-          (error) => {
-            console.log(error.text)
-          }
-        )
+      // await emailjs
+      //   .sendForm(
+      //     "service_jr7wf7h",
+      //     "template_6ddddpd",
+      //     form.current,
+      //     "haqfaIlGVxw0IJOi2"
+      //   )
+      //   .then(
+      //     () => {
+      dispatch(createPrayer(inputValue))
+      //   },
+      //   (error) => {
+      //     console.log(error.text)
+      //   }
+      // )
       // dispatch(createPrayer(inputValue))
     }
   }
@@ -121,7 +120,7 @@ const Contact = () => {
           ))}
       </section>
       <div className="py-10 px-6 sm:px-5 lg:col-span-2">
-        <h3 className="text-primary text-xl font-bold my-2 capitalize">
+        <h3 className="text-primary text-xl font-bold my-2 uppercase">
           Send us a message
         </h3>
         <form
@@ -221,7 +220,7 @@ const Contact = () => {
                 Your Prayer or Praise
               </label>
               <span id="message-max" className="text-sm text-warm-gray-500">
-                Max. 500 characters
+                {inputValue.message.length} / 1000 characters
               </span>
             </div>
             <div className="mt-1">

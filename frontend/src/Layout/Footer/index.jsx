@@ -26,7 +26,14 @@ const Index = () => {
       <div className="">
         <p className="text-center">
           &copy; 2018-2022 Chabod Prayer and Gospel Ministry. All Rights
-          Reserved. Website by Creativebase8
+          Reserved. Website by{" "}
+          <a
+            className="underline"
+            target="_blank"
+            href="https://www.fiverr.com/creativebase8"
+          >
+            Creativebase8
+          </a>
         </p>
       </div>
     </div>

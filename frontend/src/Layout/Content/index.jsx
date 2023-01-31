@@ -6,6 +6,9 @@ import AboutUs from "../../Pages/AboutUs"
 import AdminEvent from "../../Pages/Admin/AdminEvent"
 import CreateAdmin from "../../Pages/Admin/AdminEvent/CreateEvent"
 import EditEvent from "../../Pages/Admin/AdminEvent/EditEvent"
+import AdminHome from "../../Pages/Admin/AdminHome"
+import CreateActivity from "../../Pages/Admin/AdminHome/CreateActivity"
+import CreateTimeline from "../../Pages/Admin/AdminHome/CreateTimeline"
 import AdminContact from "../../Pages/Admin/Contact"
 import CreateContact from "../../Pages/Admin/Contact/CreateContact"
 import Prayer from "../../Pages/Admin/Prayer"
@@ -18,6 +21,7 @@ import Login from "../../Pages/Login"
 const adminLinks = [
   { titile: "Profile", path: "/admin/profile" },
   { titile: "Event", path: "/admin/event" },
+  { titile: "Home", path: "/admin/home" },
   { titile: "Contact", path: "/admin/contact" },
   { titile: "Prayer Request", path: "/admin/prayers" },
 ]
@@ -71,6 +75,7 @@ const Index = () => {
               className="bg-primary py-3 px-3 font-medium hover:bg-hover text-white"
               to={"/login"}
               onClick={onLogout}
+              state={{ logout: true }}
             >
               Logout
             </Link>
@@ -91,6 +96,15 @@ const Index = () => {
           <Route path="/admin/create-contact" element={<CreateContact />} />
           <Route path="/admin/create-event" element={<CreateAdmin />} />
           <Route path="/admin/edit-event/:id" element={<EditEvent />} />
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route
+            path="/admin/home/create-activity"
+            element={<CreateActivity />}
+          />
+          <Route
+            path="/admin/home/create-timeline"
+            element={<CreateTimeline />}
+          />
           <Route path="/admin/prayers" element={<Prayer />} />
           <Route path="*" element={<Home />} />
         </Routes>
