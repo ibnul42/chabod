@@ -19,11 +19,11 @@ function Index() {
   return (
     <div className="z-40 bg-gradient-to-r from-black to-primary text-white">
       <div className="max-w-7xl mx-auto px-3 lg:px-0 flex justify-between">
-        <div className="flex items-center bg-black cursor-pointer">
+        <div className="flex items-center cursor-pointer">
           {/* <p className="font-bold text-2xl">Logo</p> */}
           {/* <img src="/assets/ui_logo.svg" className='h-10 w-10' alt="logo" /> */}
-          <NavLink to="/" className="text-xl font-bold bg-black">
-            <img src="/images/logo.svg" className="" alt="" />
+          <NavLink to="/" className="text-xl font-bold">
+            <img src="/images/logo.svg" className="" alt="Logo" />
           </NavLink>
         </div>
         <div

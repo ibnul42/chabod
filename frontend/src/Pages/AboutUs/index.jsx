@@ -7,14 +7,14 @@ const AboutUs = () => {
         About us
       </h1>
       <section className="grid grid-cols-12 gap-3">
-        <div className="col-span-12 md:col-span-4">
+        {/* <div className="col-span-12 md:col-span-4">
           <img src="/images/founder.png" alt="" className="w-full mt-2" />
           <p className="text-primary flex flex-col text-center text-lg font-semibold my-3">
             <span>Armin R. Gesswein</span>
             <span>(1908-2001)</span>
           </p>
-        </div>
-        <div className="col-span-12 md:col-span-8">
+        </div> */}
+        <div className="col-span-12">
           <div className="my-3 flex flex-col gap-4 font-medium">
             <div className="">
               <p className="font-bold my-2">የአገልግሎቱ ራዕይ</p>
