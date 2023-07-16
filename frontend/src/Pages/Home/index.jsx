@@ -104,18 +104,20 @@ const Home = () => {
                 timelines.map((item, index) => (
                   <div
                     key={index}
-                    className={`flex gap-3 z-10 relative ${
-                      index % 2 === 0
+                    className={`flex gap-3 z-10 relative ${index % 2 === 0
                         ? "flex-row-reverse lg:flex-row"
                         : "flex-row-reverse lg:flex-row-reverse"
-                    }`}
+                      }`}
                   >
                     <div className="bg-gray-100 px-3 py-3 flex flex-col gap-2 rounded-lg shadow-custom lg:w-2/5 z-50">
                       <p className="text-blue-600 text-lg font-semibold capitalize">
                         {item.title}
                       </p>
                       <p className="text-gray-600 min-h-min max-h-44 overflow-y-auto">
-                        {item.description}
+                        {/* {item.description} */}
+                        {item.description.split('\n').map((line, lineIndex) => (
+                          <p key={lineIndex}>{line}</p>
+                        ))}
                       </p>
                     </div>
                     <div className="absolute h-full w-full hidden lg:flex justify-center items-center">

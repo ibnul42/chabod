@@ -69,7 +69,15 @@ const CreateTimeline = () => {
             <label htmlFor="title" className="w-full text-left font-medium">
               Description
             </label>
-            <input
+            <textarea placeholder="Description"
+              type="text"
+              id="description"
+              name="description"
+              value={description}
+              required
+              onChange={handleChange}
+              className="px-2 py-1 border border-primary rounded-md w-52 focus-visible:outline-primary" cols="30" rows="10"></textarea>
+            {/* <input
               placeholder="Description"
               type="text"
               id="description"
@@ -78,7 +86,7 @@ const CreateTimeline = () => {
               required
               onChange={handleChange}
               className="px-2 py-1 border border-primary rounded-md w-52 focus-visible:outline-primary"
-            />
+            /> */}
           </div>
           <div className="flex justify-center gap-3">
             <button className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize m-2">

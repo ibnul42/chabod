@@ -3,6 +3,7 @@ import eventService from './eventService'
 
 const initialState = {
     event : null,
+    dateEvents:null,
     isLoading: false,
     isError: false,
     isSuccess: false,
@@ -43,9 +44,9 @@ export const getEvent = createAsyncThunk('event/get-event', async(id, thunkAPI) 
 })
 
 // all Event
-export const allEvent = createAsyncThunk('event/all-event', async(date, thunkAPI) => {
+export const allEvent = createAsyncThunk('event/all-event', async(_, thunkAPI) => {
     try {
-        return await eventService.allEvent(date)
+        return await eventService.allEvent()
     } catch (error) {
         const message = error.response && error.response.data && error.response.data.message || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -121,14 +122,14 @@ export const authSlice = createSlice({
             .addCase(eventsByDate.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.event = action.payload
+                state.dateEvents = action.payload
                 state.isEventsBydate = true
             })
             .addCase(eventsByDate.rejected, (state, action) => {
                  state.isLoading = false
                  state.isError = true
                  state.message = action.payload
-                 state.event = null
+                 state.dateEvents = null
             })
             .addCase(getEvent.pending, (state) => {
                 state.isLoading = true

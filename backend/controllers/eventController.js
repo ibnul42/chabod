@@ -62,9 +62,19 @@ const updateEvent = asyncHandler(async (req, res) => {
 
 const getAllEvents = asyncHandler(async (req, res) => {
   const events = await Event.find()
+
+  const sortedEvents = events.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )
+
+  let perPage = parseInt(req.query.perPage) || 1000;
+  let page = parseInt(req.query.page) || 1;
+
+  let paginatedData = sortedEvents.slice((page - 1) * perPage, page * perPage);
+
   res.status(200)
   res.json({
-    events,
+    events: paginatedData,
   })
 })
 
@@ -122,5 +132,5 @@ module.exports = {
   deleteEvent,
   getSingleEvent,
   deleteEvent,
-  getEventByDate
+  getEventByDate,
 }

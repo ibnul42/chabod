@@ -24,12 +24,8 @@ const getEvent = async (id) => {
   return response.data
 }
 
-const allEvent = async (date) => {
-  const token = JSON.parse(localStorage.getItem("user"))["token"]
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  }
-  const response = await axios.get(API_URL, config)
+const allEvent = async () => {
+  const response = await axios.get(API_URL)
 
   return response.data
 }

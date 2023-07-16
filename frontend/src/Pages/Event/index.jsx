@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { eventsByDate, reset } from "../../features/event/eventSlice"
+import { allEvent, eventsByDate, reset } from "../../features/event/eventSlice"
 
 const Event = () => {
   const [selectedDate, setSelectedDate] = useState("")
@@ -8,20 +8,21 @@ const Event = () => {
 
   const dispatch = useDispatch()
 
-  const { event, isSuccess, isError, isEventsBydate } = useSelector(
+  const { event, dateEvents, isSuccess, isError, isEventsBydate } = useSelector(
     (state) => state.event
   )
 
   useEffect(() => {
     if (isEventsBydate) {
-      setData(event)
+      setData(dateEvents)
       dispatch(reset())
     }
     if (isError) {
       setData(null)
       dispatch(reset())
     }
-  }, [event, isSuccess])
+    dispatch(allEvent())
+  }, [dateEvents, isSuccess])
 
   const dateChange = (e) => {
     setSelectedDate(e.target.value)
@@ -29,6 +30,11 @@ const Event = () => {
 
   const onSubmit = () => {
     dispatch(eventsByDate(selectedDate))
+  }
+
+  const dateFromEvent = (date) => {
+    setSelectedDate(date)
+    dispatch(eventsByDate(date))
   }
   return (
     <div className="px-3">
@@ -46,6 +52,7 @@ const Event = () => {
             type="date"
             id="date"
             name="date"
+            defaultValue={selectedDate}
             onChange={dateChange}
           />
           <button
@@ -59,14 +66,11 @@ const Event = () => {
       </div>
       {data && data.length > 0 ? (
         data.map((d, index) => (
-          <div className="my-4">
+          <div key={index} className="my-4">
             <p className="text-center text-primary text-xl font-semibold capitalize">
               {d.title}
             </p>
-            <table
-              key={index}
-              className="table-auto w-full border my-5 border-primary"
-            >
+            <table className="table-auto w-full border my-5 border-primary">
               <thead className="">
                 <tr className="bg-primary text-white grid grid-cols-3">
                   <th className="px-4 py-2 col-span-2 border-r border-white">
@@ -100,10 +104,7 @@ const Event = () => {
           </div>
         ))
       ) : (
-        <table
-          // key={index}
-          className="table-auto w-full border my-5 border-primary"
-        >
+        <table className="table-auto w-full border my-5 border-primary">
           <thead className="">
             <tr className="bg-primary text-white grid grid-cols-3">
               <th className="px-4 py-2 col-span-2 border-r border-white">
@@ -121,6 +122,56 @@ const Event = () => {
           </tbody>
         </table>
       )}
+      <div className="my-10">
+        <p className="text-center text-primary text-xl font-bold capitalize">
+          All Events
+        </p>
+        {event && event.events && event.events.length > 0 ? (
+          event.events.map((item, index) => (
+            <table className="table-auto w-full border my-5 border-primary">
+              <thead className="">
+                <tr className="bg-primary text-white grid grid-cols-3">
+                  <th className="px-4 py-2 col-span-2 border-r border-white">
+                    Event Title
+                  </th>
+                  <th className="px-4 py-2 col-span-1">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr key={index} className="even:bg-rose-200 grid grid-cols-3">
+                  <td className="px-4 py-2 col-span-2 border-r border-primary">
+                    <button
+                      onClick={() => dateFromEvent(item.date)}
+                      className=" text-left"
+                    >
+                      {item.title}
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 col-span-1">{item.date}</td>
+                </tr>
+              </tbody>
+            </table>
+          ))
+        ) : (
+          <table className="table-auto w-full border my-5 border-primary">
+            <thead className="">
+              <tr className="bg-primary text-white grid grid-cols-3">
+                <th className="px-4 py-2 col-span-2 border-r border-white">
+                  Event
+                </th>
+                <th className="px-4 py-2 col-span-1">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="odd:bg-gray-100 grid grid-cols-3">
+                <td className="px-4 py-2 col-span-3 border-r border-primary text-center">
+                  No data available
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   )
 }
