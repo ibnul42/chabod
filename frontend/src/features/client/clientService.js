@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "http://localhost:5000/api/clients/"
+const API_URL = `${import.meta.env.VITE_DOMAIN}/api/clients/`
 
 const getContacts = async () => {
   const response = await axios.get(API_URL + "contacts")
