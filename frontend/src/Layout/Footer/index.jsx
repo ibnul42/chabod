@@ -25,7 +25,7 @@ const Index = () => {
       <div className="h-[1px] w-full bg-white my-4"></div>
       <div className="">
         <p className="text-center">
-          &copy; 2018-2022 Chabod Prayer and Gospel Ministry. All Rights
+          &copy; 2023 Chabod Prayer and Gospel Ministry. All Rights
           Reserved.
           {/* Website by{" "}
           <a
