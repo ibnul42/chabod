@@ -8,6 +8,7 @@ import {
   getAllTimeline,
   reset,
 } from "../../../features/home/homeSlice"
+import parse, { domToReact } from 'html-react-parser'
 
 const AdminHome = () => {
   const dispatch = useDispatch()
@@ -43,20 +44,46 @@ const AdminHome = () => {
   }
 
   const onTimelineDelete = (id) => {
-    console.log(id)
     if (confirm("Are you sure you want to delete?")) {
       dispatch(deleteTimeline(id))
     }
   }
 
   const onActivityDelete = (id) => {
-    console.log(id)
     if (confirm("Are you sure you want to delete?")) {
       dispatch(deleteActivity(id))
     }
   }
   const onEditEvent = (id) => {
     // dispatch(reset())
+  }
+
+  const renderHtmlContent = (htmlContent) => {
+    const options = {
+      replace: (node) => {
+        if (node.name === 'ul') {
+          return <ul className="list-disc ml-10 py-1 w-full">{domToReact(node.children)}</ul>;
+        }
+        if (node.name === 'ol') {
+          return <ol className="list-decimal ml-10 py-1 w-full">{domToReact(node.children)}</ol>;
+        }
+        if (node.name === 'li') {
+          return <ol className="list-decimal ml-10 w-full">{domToReact(node.children)}</ol>;
+        }
+        if (node.name === 'strong') {
+          return <strong className="font-bold">{domToReact(node.children)}</strong>;
+        }
+        if (node.name === 'em') {
+          return <em className="italic">{domToReact(node.children)}</em>;
+        }
+        if (node.name === 'u') {
+          return <u className="underline">{domToReact(node.children)}</u>;
+        }
+        // Add more conditions for other HTML elements as needed
+      },
+    };
+
+    return parse(htmlContent, options);
   }
 
   return (
@@ -165,8 +192,8 @@ const AdminHome = () => {
                   <td className="px-4 py-2 col-span-1 border-r border-primary flex items-center justify-center">
                     <p>{item.title}</p>
                   </td>
-                  <td className="px-4 py-2 col-span-2 border-r border-primary flex items-center justify-center max-h-44 overflow-y-auto">
-                    {item.description}
+                  <td className="px-4 py-2 col-span-2 border-r border-primary flex flex-col max-h-44 overflow-y-auto">
+                    {renderHtmlContent(item.description)}
                   </td>
                   <td className="px-4 py-2 col-span-1 flex justify-center items-center gap-3">
                     {/* <Link
