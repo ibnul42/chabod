@@ -77,7 +77,6 @@ const Home = () => {
               <div className="absolute h-full w-full hidden lg:flex justify-center">
                 <div className="h-full w-2 bg-[#CC99A6] rounded-lg"></div>
               </div>
-              {/* <div className="absolute left-7 lg:left-[54%] xl:left-[53.1%] -top-4 h-full w-[6px] bg-[#CC99A6]"></div> */}
               {timelines &&
                 timelines.map((item, index) => (
                   <div
@@ -91,11 +90,8 @@ const Home = () => {
                       <p className="text-blue-600 text-lg font-semibold capitalize">
                         {item.title}
                       </p>
-                      <p className="text-gray-600 min-h-min max-h-44 overflow-y-auto">
+                      <p className="text-gray-600 min-h-min max-h-44 overflow-x-hidden overflow-y-auto">
                         {renderHtmlContent(item.description)}
-                        {/* {item.description.split('\n').map((line, lineIndex) => (
-                          <p key={lineIndex}>{line}</p>
-                        ))} */}
                       </p>
                     </div>
                     <div className="absolute h-full w-full hidden lg:flex justify-center items-center">
@@ -109,9 +105,6 @@ const Home = () => {
                         <div className="absolute h-[50%] bottom-[50%] w-20 bg-white"></div>
                       )}
                     </div>
-                    {/* <div className="h-16 lg:h-20 w-16 lg:w-20 flex-shrink-0 rounded-full bg-white shadow- shadow-gray-400 p-1 lg:absolute left-[50%]">
-                      <div className="h-full w-full bg-primary rounded-full"></div>
-                    </div> */}
                   </div>
                 ))}
             </div>
@@ -138,7 +131,9 @@ const Home = () => {
               className="w-full md:w-full md:max-w-[47%] lg:max-w-[32%] shadow-custom px-4 py-3 rounded-md flex flex-col gap-2 items-center"
             >
               <p className="text-primary text-lg font-semibold">{item.title}</p>
-              <p>{item.description}</p>
+              <p className="text-gray-600 min-h-min max-h-44 overflow-x-hidden overflow-y-auto">
+                {renderHtmlContent(item.description)}
+              </p>
             </div>
           ))}
       </section>

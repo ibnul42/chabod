@@ -54,9 +54,6 @@ const AdminHome = () => {
       dispatch(deleteActivity(id))
     }
   }
-  const onEditEvent = (id) => {
-    // dispatch(reset())
-  }
 
   const renderHtmlContent = (htmlContent) => {
     const options = {
@@ -125,17 +122,10 @@ const AdminHome = () => {
                   <td className="px-4 py-2 col-span-1 border-r border-primary flex items-center justify-center">
                     <p>{item.title}</p>
                   </td>
-                  <td className="px-4 py-2 col-span-2 border-r border-primary flex items-center justify-center max-h-44 overflow-y-auto">
-                    {item.description}
+                  <td className="px-4 py-2 col-span-2 border-r border-primary flex flex-col max-h-44 overflow-x-hidden overflow-y-auto">
+                    {renderHtmlContent(item.description)}
                   </td>
                   <td className="px-4 py-2 col-span-1 flex justify-center items-center gap-3">
-                    {/* <Link
-                      to={`/admin/home/${item._id}`}
-                      className="px-6 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer h-max"
-                      onClick={() => onEditEvent(item._id)}
-                    >
-                      Edit
-                    </Link> */}
                     <button
                       onClick={() => onActivityDelete(item._id)}
                       className="px-4 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer h-max"
@@ -192,17 +182,10 @@ const AdminHome = () => {
                   <td className="px-4 py-2 col-span-1 border-r border-primary flex items-center justify-center">
                     <p>{item.title}</p>
                   </td>
-                  <td className="px-4 py-2 col-span-2 border-r border-primary flex flex-col max-h-44 overflow-y-auto">
+                  <td className="px-4 py-2 col-span-2 border-r border-primary flex flex-col max-h-44 overflow-x-hidden overflow-y-auto">
                     {renderHtmlContent(item.description)}
                   </td>
                   <td className="px-4 py-2 col-span-1 flex justify-center items-center gap-3">
-                    {/* <Link
-                      to={`/admin/home/${item._id}`}
-                      className="px-6 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer h-max"
-                      onClick={() => onEditEvent(item._id)}
-                    >
-                      Edit
-                    </Link> */}
                     <button
                       onClick={() => onTimelineDelete(item._id)}
                       className="px-4 py-1 rounded-full border border-primary hover:bg-primary text-primary hover:text-white font-medium cursor-pointer h-max"

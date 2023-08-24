@@ -68,10 +68,8 @@ const CreateTimeline = () => {
     return parse(htmlContent, options);
   }
 
-  const [parsedContent, setParsedContent] = useState(null)
   const handleSubmit = (e) => {
     e.preventDefault()
-    setParsedContent(renderHtmlContent(value))
     dispatch(createTimeline({
       title,
       description: value
@@ -109,19 +107,6 @@ const CreateTimeline = () => {
               className="px-2 py-1 border border-primary rounded-md w-full focus-visible:outline-primary"
             />
           </div>
-          {/* <div className="flex flex-col gap-1 items-center">
-            <label htmlFor="title" className="w-full text-left font-medium">
-              Description
-            </label>
-            <textarea placeholder="Description"
-              type="text"
-              id="description"
-              name="description"
-              value={description}
-              required
-              onChange={handleChange}
-              className="px-2 py-1 border border-primary rounded-md w-full focus-visible:outline-primary" cols="30" rows="10"></textarea>
-          </div> */}
           <div className="w-full">
             <label htmlFor="title" className="w-full text-left font-medium">
               Description
@@ -130,10 +115,6 @@ const CreateTimeline = () => {
               toolbar: toolbarOptions,
             }} className="w-full" />
           </div>
-          {/* <div className="border p-3 py-10">{value}</div> */}
-          {/* <div className="">
-            {parsedContent}
-          </div> */}
           <div className="flex justify-center gap-3">
             <button className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-hover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize m-2">
               Submit
